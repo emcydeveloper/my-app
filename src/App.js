@@ -44,7 +44,6 @@ export default function App() {
 function Movie({Name,Ratings,Image,Summary}) {
   return (
     <div className="movie-container">
-
       <img className="movie-poster" src={Image} alt=""></img>
       <Counter />
       <hr></hr>
@@ -54,7 +53,6 @@ function Movie({Name,Ratings,Image,Summary}) {
       </section>
       <hr></hr>
       <p className="movie-summary">{Summary}</p>
-      
     </div>
   );
 }
