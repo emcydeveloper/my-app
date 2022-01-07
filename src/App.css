@@ -1,41 +1,70 @@
+.App {
+  /* background-color: black;
+  color:white; */
+}
 
-.movie-container{
-  width:350px;
+.btnCentered {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 30px !important;
+  margin-bottom: 10px !important;
+}
+
+.btnSubmit,.btnCancel{
+  margin:20px;
+  width:20%;
+}
+
+.add-movie-form{
+  background-color: antiquewhite;
+  text-align: center;
+}
+.add-movie-form input {
+  padding: 5px;
+  margin:5px;
+  width: 80%;
+}
+
+.movie-container {
+  width: 350px;
   margin-top: 10px;
   margin-left: 10px;
   border: 1px solid gray;
   padding: 5px;
 }
 
-.main-container{
-  display:flex;
+.main-container {
+  display: flex;
   flex-wrap: wrap;
 }
 
-.movie-poster{
+.movie-poster {
   width: 100%;
   height: 350px;
   justify-content: center;
 }
 
-.movie-section{
+.movie-section {
   display: flex;
   justify-content: space-between;
   padding-right: 20px;
-  
 }
 
-.movie-like,.movie-dislike{
-background-color: white;
-border: none;
+.movie-like,
+.movie-dislike {
+  background-color: white;
+/* color:white; */
+  font-size: large;
+  border: none;
 }
 
-.movie-like,.movie-dislike:hover{
+.movie-like,
+.movie-dislike:hover {
   cursor: pointer;
 }
 
-.movie-summary{
+.movie-summary {
   font-family: Arial, sans-serif;
   font-size: 14px;
-  color:rgb(77, 81, 86)
+  color: rgb(77, 81, 86);
 }
