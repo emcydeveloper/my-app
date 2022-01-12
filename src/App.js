@@ -4,12 +4,7 @@ import { useState } from "react";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import TextField from "@mui/material/TextField";
-import Badge from "@mui/material/Badge";
-import IconButton from "@mui/material/IconButton";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
+import { Movie } from "./Movie";
 
 export default function App() {
   const movieInfo = [
@@ -186,68 +181,6 @@ export default function App() {
           />
         ))}
       </section>
-    </div>
-  );
-}
-
-function Movie({ Name, Ratings, Image, Summary }) {
-  const ratingStyles = { color: Ratings < 8 ? "red" : "green" };
-
-  const [visible, setVisible] = useState(false);
-  const showSummaryStyle = { display: visible ? "block" : "none" };
-
-  return (
-    <Card className="movie-container">
-      <CardContent>
-        <img className="movie-poster" src={Image} alt=""></img>
-        <Counter />
-        <hr></hr>
-        <section className="movie-section">
-          <h3 className="movie-name">
-            {Name}
-            <IconButton onClick={() => setVisible(!visible)}>
-              {visible ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-            </IconButton>
-          </h3>
-          <p className="movie-rating" style={ratingStyles}>
-            ⭐ {Ratings}
-          </p>
-        </section>
-
-        <p style={showSummaryStyle} className="movie-summary">
-          <hr></hr>
-          {Summary}
-        </p>
-      </CardContent>
-    </Card>
-  );
-}
-
-function Counter() {
-  let [like, setLike] = useState(0);
-  let [disLike, setDislike] = useState(0);
-  return (
-    <div>
-      <IconButton
-        className="movie-like"
-        onClick={() => {
-          setLike(like + 1);
-        }}
-      >
-        <Badge badgeContent={like} color="secondary">
-          👍
-        </Badge>
-      </IconButton>
-      <IconButton
-        className="movie-dislike"
-        onClick={() => {
-          setDislike(disLike + 1);
-        }}
-      >
-        <Badge badgeContent={disLike} color="success">
-          👎
-        </Badge>
-      </IconButton>
     </div>
   );
 }
