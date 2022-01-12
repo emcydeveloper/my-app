@@ -3,7 +3,13 @@ import "./App.css";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
-import Fab from "@mui/material/Fab";
+import TextField from "@mui/material/TextField";
+import Badge from "@mui/material/Badge";
+import IconButton from "@mui/material/IconButton";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 
 export default function App() {
   const movieInfo = [
@@ -71,76 +77,102 @@ export default function App() {
 
       <div className="add-movie-form" style={addMovieStyles}>
         <h1>Enter Movie Details</h1>
-        <input
+        <TextField
+          required
+          className="add-movie-txt"
+          id="outlined-required"
+          label="Name"
+          defaultValue="Name"
           value={Name}
           onChange={(event) => setName(event.target.value)}
           placeholder="Name"
         />
-        <input
+        {/* <input
+          value={Name}
+          onChange={(event) => setName(event.target.value)}
+          placeholder="Name"
+        /> */}
+        <TextField
+          required
+          className="add-movie-txt"
+          id="outlined-required"
+          label="Ratings"
+          defaultValue="Hello World"
           value={Ratings}
           onChange={(event) => setRatings(event.target.value)}
           placeholder="Ratings"
         />
-        <input
+        {/* <input
+          value={Ratings}
+          onChange={(event) => setRatings(event.target.value)}
+          placeholder="Ratings"
+        /> */}
+        <TextField
+          required
+          className="add-movie-txt"
+          id="outlined-required"
+          label="Image URL"
+          defaultValue="Hello World"
           value={Image}
           onChange={(event) => setImage(event.target.value)}
           placeholder="Image URL"
         />
-        <input
+        {/* <input
+          value={Image}
+          onChange={(event) => setImage(event.target.value)}
+          placeholder="Image URL"
+        /> */}
+
+        <TextField
+          required
+          className="add-movie-txt"
+          id="outlined-multiline-flexible"
+          label="Summary"
+          multiline
+          maxRows={4}
+          // value={value}
+          value={Summary}
+          onChange={(event) => {
+            setSummary(event.target.value);
+            // setValue(event.target.value);
+          }}
+          placeholder="Summary"
+        />
+        {/* <input
           value={Summary}
           onChange={(event) => setSummary(event.target.value)}
           placeholder="Summary"
-        />
-        {/* <button onClick={()=>{
-        const newMovie = {Name:Name,Ratings:Ratings,Image:Image,Summary:Summary};
-        setMovieList([...movieList,newMovie])
-        }}>Add Movie</button> */}
-<div className="btnWrapper text-center">
-        <button
-          type="button"
-          class="btn btn-primary btnSubmit"
-          onClick={() => {
-            const newMovie = {
-              Name: Name,
-              Ratings: Ratings,
-              Image: Image,
-              Summary: Summary,
-            };
-            setMovieList([...movieList, newMovie]);
-            setAddMovieBtn(addMovieBtn === "block" ? "none" : "block");
-            setAddBtn(addBtn === "none" ? "block" : "none");
-          }}
-        >
-          Submit
-        </button>
+        /> */}
 
-        {/* <Button
-          variant="contained"
-          onClick={() => {
-            const newMovie = {
-              Name: Name,
-              Ratings: Ratings,
-              Image: Image,
-              Summary: Summary,
-            };
-            setMovieList([...movieList, newMovie]);
-            setAddMovieBtn(addMovieBtn === "block" ? "none" : "block");
-            setAddBtn(addBtn === "none" ? "block" : "none");
-          }}
-        >
-          <AddIcon />
-          Submit Movie
-        </Button> */}
-        <button
-          onClick={() => {
-            setAddMovieBtn(addMovieBtn === "block" ? "none" : "block");
-            setAddBtn(addBtn === "none" ? "block" : "none");
-          }}
-          type="button"
-          class="btn btn-primary btnCancel"
-        >
-          Cancel
-        </button>
+        <div className="btnWrapper text-center">
+          <button
+            type="button"
+            class="btn btn-primary btnSubmit"
+            onClick={() => {
+              const newMovie = {
+                Name: Name,
+                Ratings: Ratings,
+                Image: Image,
+                Summary: Summary,
+              };
+              setMovieList([...movieList, newMovie]);
+              setAddMovieBtn(addMovieBtn === "block" ? "none" : "block");
+              setAddBtn(addBtn === "none" ? "block" : "none");
+            }}
+          >
+            Submit
+          </button>
+
+          <button
+            onClick={() => {
+              setAddMovieBtn(addMovieBtn === "block" ? "none" : "block");
+              setAddBtn(addBtn === "none" ? "block" : "none");
+            }}
+            type="button"
+            class="btn btn-primary btnCancel"
+          >
+            Cancel
+          </button>
         </div>
       </div>
 
@@ -160,61 +192,34 @@ export default function App() {
 
 function Movie({ Name, Ratings, Image, Summary }) {
   const ratingStyles = { color: Ratings < 8 ? "red" : "green" };
-  const [summarydisplayValue, setdisplaySummaryValue] = useState("none");
-  const summaryStyles = { display: summarydisplayValue };
 
-  const [fabUnhide, setFabUnhide] = useState("block");
-  const fabStyleUnhide = { display: fabUnhide };
-
-  const [fabHide, setFabHide] = useState("none");
-  const fabStyleHide = { display: fabHide, float: "right" };
+  const [visible, setVisible] = useState(false);
+  const showSummaryStyle = { display: visible ? "block" : "none" };
 
   return (
-    <div className="movie-container">
-      <img className="movie-poster" src={Image} alt=""></img>
-      <Counter />
-      <hr></hr>
-      <section className="movie-section">
-        <h3 className="movie-name">{Name}</h3>
-        <p className="movie-rating" style={ratingStyles}>
-          ⭐ {Ratings}
+    <Card className="movie-container">
+      <CardContent>
+        <img className="movie-poster" src={Image} alt=""></img>
+        <Counter />
+        <hr></hr>
+        <section className="movie-section">
+          <h3 className="movie-name">
+            {Name}
+            <IconButton onClick={() => setVisible(!visible)}>
+              {visible ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+            </IconButton>
+          </h3>
+          <p className="movie-rating" style={ratingStyles}>
+            ⭐ {Ratings}
+          </p>
+        </section>
+
+        <p style={showSummaryStyle} className="movie-summary">
+          <hr></hr>
+          {Summary}
         </p>
-      </section>
-      <hr></hr>
-      <Fab
-        style={fabStyleUnhide}
-        size="small"
-        color="secondary"
-        aria-label="add"
-        onClick={() => {
-          setdisplaySummaryValue(
-            summarydisplayValue === "none" ? "block" : "none"
-          );
-          setFabUnhide(fabUnhide === "block" ? "none" : "block");
-          setFabHide(fabHide === "none" ? "block" : "none");
-        }}
-      >
-        +
-      </Fab>
-      <p className="movie-summary" style={summaryStyles}>
-        {Summary}
-      </p>
-      <Fab
-        style={fabStyleHide}
-        size="small"
-        color="secondary"
-        aria-label="add"
-        onClick={() => {
-          setdisplaySummaryValue(
-            summarydisplayValue === "block" ? "none" : "block"
-          );
-          setFabUnhide(fabUnhide === "none" ? "block" : "none");
-          setFabHide(fabHide === "block" ? "none" : "block");
-        }}
-      >
-        -
-      </Fab>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -223,22 +228,26 @@ function Counter() {
   let [disLike, setDislike] = useState(0);
   return (
     <div>
-      <button
+      <IconButton
         className="movie-like"
         onClick={() => {
           setLike(like + 1);
         }}
       >
-        👍 {like}
-      </button>
-      <button
+        <Badge badgeContent={like} color="secondary">
+          👍
+        </Badge>
+      </IconButton>
+      <IconButton
         className="movie-dislike"
         onClick={() => {
           setDislike(disLike + 1);
         }}
       >
-        👎 {disLike}
-      </button>
+        <Badge badgeContent={disLike} color="success">
+          👎
+        </Badge>
+      </IconButton>
     </div>
   );
 }

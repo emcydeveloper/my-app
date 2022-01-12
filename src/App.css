@@ -1,4 +1,7 @@
-
+hr{
+  padding: 0px;
+  margin: 0px;
+}
 .btnCentered {
   margin-left: auto !important;
   margin-right: auto !important;
@@ -15,18 +18,19 @@
   background-color: antiquewhite;
   text-align: center;
 }
-.add-movie-form input {
-  padding: 5px;
-  margin:5px;
-  width: 80%;
+.add-movie-form div {
+  /* padding: 5px; */
+  margin:2px;
+  width: 80% !important;
 }
 
 .movie-container {
   width: 350px;
   margin-top: 10px;
   margin-left: 10px;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   padding: 5px;
+  height: min-content;
 }
 
 .main-container {
@@ -49,6 +53,7 @@
 .movie-like,
 .movie-dislike {
   background-color: white;
+  margin-top: 10px;
 /* color:white; */
   font-size: large;
   border: none;
