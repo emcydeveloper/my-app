@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import TextField from "@mui/material/TextField";
 import { Movie } from "./Movie";
+import { Switch, Route, Link } from "react-router-dom";
 
 export default function App() {
   const movieInfo = [
@@ -55,7 +56,20 @@ export default function App() {
 
   return (
     <div className="App">
-      <div className="btnWrapper">
+
+      <ul>
+      <li>
+          <Link to ="/">Home</Link>
+        </li>
+        <li>
+        <Link to="/movies">Name of the link</Link>
+        </li>
+        
+      </ul>
+      <Switch>
+        <Route path="/movies">
+          <h1>testing</h1>
+          <div className="btnWrapper">
         <Button
           className="btnCentered"
           style={addBtnStyle}
@@ -181,6 +195,15 @@ export default function App() {
           />
         ))}
       </section>
+        </Route>
+
+        <Route path = "/">
+<h1>Welcome to Movie app</h1>
+        </Route>
+      </Switch>
+
+      
+      
     </div>
   );
 }
