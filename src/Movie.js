@@ -1,3 +1,4 @@
+import "./App.css";
 import React from "react";
 import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
@@ -10,7 +11,7 @@ import { useHistory } from "react-router-dom";
 
 export function Movie({ KeyID, Name, Ratings, Image, Summary }) {
   const ratingStyles = { color: Ratings < 8 ? "red" : "green" };
-
+  // KeyID, Name, Ratings, Image, Summary
   const [visible, setVisible] = useState(false);
   const showSummaryStyle = { display: visible ? "block" : "none" };
   // console.log(KeyID);
@@ -20,7 +21,17 @@ export function Movie({ KeyID, Name, Ratings, Image, Summary }) {
     <Card className="movie-container" key={KeyID}>
       <CardContent>
         <img className="movie-poster" src={Image} alt=""></img>
+        <div className="like-edit">
+          <div>
         <Counter />
+        </div>
+        <div>
+          <button onClick={()=>{}}>edit</button>
+          <button onClick={()=>{
+            // const newMovieList = [];
+          }}>delete</button>
+          </div>
+        </div>
         {/* <hr></hr> */}
         <section className="movie-section">
           <h3 className="movie-name">
@@ -28,10 +39,11 @@ export function Movie({ KeyID, Name, Ratings, Image, Summary }) {
             <IconButton onClick={() => setVisible(!visible)}>
               {visible ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             </IconButton>
-            <IconButton
-              onClick={() => history.push("/movies/"+ KeyID)}>!</IconButton>
+            <IconButton onClick={() => history.push("/movies/" + KeyID)}>
+              !
+            </IconButton>
           </h3>
-          
+
           <p className="movie-rating" style={ratingStyles}>
             ⭐ {Ratings}
           </p>

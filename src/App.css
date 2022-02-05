@@ -33,6 +33,13 @@ hr{
   height: min-content;
 }
 
+.like-edit{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .main-container {
   display: flex;
   flex-wrap: wrap;
