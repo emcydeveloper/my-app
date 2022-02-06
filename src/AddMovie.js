@@ -14,22 +14,7 @@ export function AddMovie({ movieList, setMovieList }) {
 
   return (
     <div>
-      {/* <div className="btnWrapper">
-        <Button
-          className="btnCentered"
-          style={addBtnStyle}
-          variant="contained"
-          onClick={() => {
-            setAddMovieBtn(addMovieBtn === "none" ? "block" : "none");
-            setAddBtn(addBtn === "block" ? "none" : "block");
-          }}
-        >
-          <AddIcon />
-          Click to add Movie
-        </Button>
-      </div> */}
-
-      {/* <div className="add-movie-form" style={addMovieStyles}> */}
+      
       <div className="add-movie-form">
         <h1>Enter Movie Details</h1>
         <TextField
