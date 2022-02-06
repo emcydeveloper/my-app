@@ -6,6 +6,7 @@ import { Switch, Route, Link } from "react-router-dom";
 import { MovieDetails } from "./MovieDetails";
 import { AddMovie } from "./AddMovie";
 import { useHistory } from "react-router-dom";
+import { EditMovie } from "./EditMovie";
 
 export default function App() {
   const movieInfo = [
@@ -66,6 +67,7 @@ const history = useHistory();
 
       <Route path="/movies/edit/:movieid">
           <h1>editing movie</h1>
+          <EditMovie movieList={movieList} setMovieList={setMovieList} />
         </Route>
         
         <Route path="/movies/:movieid">
@@ -111,3 +113,5 @@ const history = useHistory();
     </div>
   );
 }
+
+
