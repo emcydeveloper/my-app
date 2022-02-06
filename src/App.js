@@ -5,6 +5,7 @@ import { Movie } from "./Movie";
 import { Switch, Route, Link } from "react-router-dom";
 import { MovieDetails } from "./MovieDetails";
 import { AddMovie } from "./AddMovie";
+import { useHistory } from "react-router-dom";
 
 export default function App() {
   const movieInfo = [
@@ -45,7 +46,7 @@ export default function App() {
     },
   ];
   
-
+const history = useHistory();
   const [movieList, setMovieList] = useState(movieInfo);
 
   return (
@@ -63,6 +64,10 @@ export default function App() {
       </ul>
       <Switch>
 
+      <Route path="/movies/edit/:movieid">
+          <h1>editing movie</h1>
+        </Route>
+        
         <Route path="/movies/:movieid">
           <MovieDetails movieList={movieList} />
         </Route>
@@ -77,6 +82,17 @@ export default function App() {
                 Ratings={movie.Ratings}
                 Image={movie.Image}
                 Summary={movie.Summary}
+                deleteBtn = {<div>
+                  <button onClick={()=>{
+                    history.push("/movies/edit/" + index)
+                  }}>edit</button>
+                  <button onClick={()=>{
+                    const newMovieList = movieList.filter((movie,inx)=>{
+                      return inx !== index;
+                    });
+                    setMovieList(newMovieList)
+                  }}>delete</button>
+                  </div>}
               />
             ))}
           </section>
@@ -86,6 +102,7 @@ export default function App() {
           <AddMovie movieList={movieList} setMovieList={setMovieList} />
         </Route>
 
+        
         <Route path="/">
           <h1>Welcome to Movie app</h1>
         </Route>

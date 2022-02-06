@@ -9,7 +9,9 @@ import CardContent from "@mui/material/CardContent";
 import { Counter } from "./Counter";
 import { useHistory } from "react-router-dom";
 
-export function Movie({ KeyID, Name, Ratings, Image, Summary }) {
+export function Movie({ KeyID, trailer, Name, Ratings, Image, Summary, deleteBtn }) {
+    
+
   const ratingStyles = { color: Ratings < 8 ? "red" : "green" };
   // KeyID, Name, Ratings, Image, Summary
   const [visible, setVisible] = useState(false);
@@ -25,12 +27,7 @@ export function Movie({ KeyID, Name, Ratings, Image, Summary }) {
           <div>
         <Counter />
         </div>
-        <div>
-          <button onClick={()=>{}}>edit</button>
-          <button onClick={()=>{
-            // const newMovieList = [];
-          }}>delete</button>
-          </div>
+        {deleteBtn}
         </div>
         {/* <hr></hr> */}
         <section className="movie-section">
