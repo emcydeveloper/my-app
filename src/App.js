@@ -7,6 +7,7 @@ import { MovieDetails } from "./MovieDetails";
 import { AddMovie } from "./AddMovie";
 import { useHistory } from "react-router-dom";
 import { EditMovie } from "./EditMovie";
+import { ColorGame } from "./ColorGame";
 
 export default function App() {
   const movieInfo = [
@@ -46,8 +47,8 @@ export default function App() {
       Trailer: "",
     },
   ];
-  
-const history = useHistory();
+
+  const history = useHistory();
   const [movieList, setMovieList] = useState(movieInfo);
 
   return (
@@ -62,14 +63,16 @@ const history = useHistory();
         <li>
           <Link to="/addmovie">Add Movie</Link>
         </li>
+        <li>
+          <Link to="/testing">For testing</Link>
+        </li>
       </ul>
       <Switch>
-
-      <Route path="/movies/edit/:movieid">
+        <Route path="/movies/edit/:movieid">
           <h1>editing movie</h1>
           <EditMovie movieList={movieList} setMovieList={setMovieList} />
         </Route>
-        
+
         <Route path="/movies/:movieid">
           <MovieDetails movieList={movieList} />
         </Route>
@@ -79,22 +82,32 @@ const history = useHistory();
             {movieList.map((movie, index) => (
               <Movie
                 KeyID={index}
-                trailer = {movie.Trailer}
+                trailer={movie.Trailer}
                 Name={movie.Name}
                 Ratings={movie.Ratings}
                 Image={movie.Image}
                 Summary={movie.Summary}
-                deleteBtn = {<div>
-                  <button onClick={()=>{
-                    history.push("/movies/edit/" + index)
-                  }}>edit</button>
-                  <button onClick={()=>{
-                    const newMovieList = movieList.filter((movie,inx)=>{
-                      return inx !== index;
-                    });
-                    setMovieList(newMovieList)
-                  }}>delete</button>
-                  </div>}
+                deleteBtn={
+                  <div>
+                    <button
+                      onClick={() => {
+                        history.push("/movies/edit/" + index);
+                      }}
+                    >
+                      edit
+                    </button>
+                    <button
+                      onClick={() => {
+                        const newMovieList = movieList.filter((movie, inx) => {
+                          return inx !== index;
+                        });
+                        setMovieList(newMovieList);
+                      }}
+                    >
+                      delete
+                    </button>
+                  </div>
+                }
               />
             ))}
           </section>
@@ -104,14 +117,16 @@ const history = useHistory();
           <AddMovie movieList={movieList} setMovieList={setMovieList} />
         </Route>
 
-        
+        <Route path="/testing">
+          <h1>Context Functionality</h1>
+          <ColorGame />
+        </Route>
+
         <Route path="/">
           <h1>Welcome to Movie app</h1>
         </Route>
-
       </Switch>
     </div>
   );
 }
-
 
