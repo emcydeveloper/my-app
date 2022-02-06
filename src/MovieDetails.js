@@ -5,6 +5,8 @@ export function MovieDetails({ movieList }) {
   // console.log(movieList);
   const { movieid } = useParams();
   const movie = movieList[movieid];
+  // const movie = movieList.filter((mov)=>{ return mov.id===movieid ? mov :"none";})
+  // console.log("am from in"+ movie);
   const name = movie.Name;
   const description = movie.Summary;
   const trailer = movie.trailer;

@@ -12,6 +12,7 @@ import { ColorGame } from "./ColorGame";
 export default function App() {
   const movieInfo = [
     {
+      id:"100",
       Name: "Doctor",
       Ratings: "10",
       Image: "https://static.toiimg.com/photo/80667091.jpeg",
@@ -20,6 +21,7 @@ export default function App() {
       Trailer: "",
     },
     {
+      id:"101",
       Name: "Sethupathi",
       Ratings: "10",
       Image:
@@ -29,6 +31,7 @@ export default function App() {
       Trailer: "",
     },
     {
+      id:"102",
       Name: "Alai Payuthey",
       Ratings: "10",
       Image:
@@ -38,6 +41,7 @@ export default function App() {
       Trailer: "",
     },
     {
+      id:"103",
       Name: "Fast & Furious",
       Ratings: "7",
       Image:
@@ -69,7 +73,7 @@ export default function App() {
       </ul>
       <Switch>
         <Route path="/movies/edit/:movieid">
-          <h1>editing movie</h1>
+          {/* <h1>editing movie</h1> */}
           <EditMovie movieList={movieList} setMovieList={setMovieList} />
         </Route>
 
@@ -98,8 +102,8 @@ export default function App() {
                     </button>
                     <button
                       onClick={() => {
-                        const newMovieList = movieList.filter((movie, inx) => {
-                          return inx !== index;
+                        const newMovieList = movieList.filter((mvs, inx) => {
+                          return mvs.id !== movie.id;
                         });
                         setMovieList(newMovieList);
                       }}

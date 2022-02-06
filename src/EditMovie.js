@@ -86,6 +86,7 @@ export function EditMovie({ movieList, setMovieList }) {
             className="btn btn-primary btnSubmit"
             onClick={() => {
               const updateMovie = {
+                //   id:"",
                 Name: Name,
                 Ratings: Ratings,
                 Image: Image,
